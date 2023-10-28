@@ -7,39 +7,39 @@ env:
 
 jobs:
   ci:
-   name: ci
-   runs-on: ubuntu-latest
-   timeout-minutes: 10
+    name: ci
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
 
-   steps:
-     - name: Checkout
-       uses: actions/checkout@v2
-    
-     - name: Unit Test
-       run: cd ${{ github.workspace }}
-       run: cd sample-webapp && npm install && npm run test:unit
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    # TODO add tests for backend and restapi
-     - name: Success
-       uses: rtCamp/action-slack-notify@v2.0.2
-       if: success()
-       env:
-        SLACK_TITLE: CI flow / success
-        SLACK_COLOR: good
-        SLACK_MESSAGE: Message for success
+      - name: Unit Test
+        run: cd ${{ github.workspace }}
+      - run: cd sample-webapp && npm install && npm run test:unit
 
-     - name: Failure
-       uses: rtCamp/action-slack-notify@v2.0.2
-       if: failure()
-       env:
-        SLACK_TITLE: CI flow / failure
-        SLACK_COLOR: danger
-        SLACK_MESSAGE: Message for failure
+      # TODO add tests for backend and restapi
+      - name: Success
+        uses: rtCamp/action-slack-notify@v2.0.2
+        if: success()
+        env:
+          SLACK_TITLE: CI flow / success
+          SLACK_COLOR: good
+          SLACK_MESSAGE: Message for success
 
-     - name: Cancel
-       uses: rtCamp/action-slack-notify@v2.0.2
-       if: cancel()
-       env:
-        SLACK_TITLE: CI flow / cancel
-        SLACK_COLOR: danger
-        SLACK_MESSAGE: Message for cancel
+      - name: Failure
+        uses: rtCamp/action-slack-notify@v2.0.2
+        if: failure()
+        env:
+          SLACK_TITLE: CI flow / failure
+          SLACK_COLOR: danger
+          SLACK_MESSAGE: Message for failure
+
+      - name: Cancel
+        uses: rtCamp/action-slack-notify@v2.0.2
+        if: cancel()
+        env:
+          SLACK_TITLE: CI flow / cancel
+          SLACK_COLOR: danger
+          SLACK_MESSAGE: Message for cancel
