@@ -3,7 +3,7 @@ name: CI flow for Amazon ECS
 on: [push]
 
 env:
-  SLACK_WEBHOOK: https://hooks.slack.com/services/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
+  SLACK_WEBHOOK: https://hooks.slack.com/services/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 ##change this URL!!
 
 jobs:
   ci:
@@ -19,27 +19,28 @@ jobs:
         run: cd ${{ github.workspace }}
       - run: cd sample-webapp && npm install && npm run test:unit
 
-      # TODO add tests for backend and restapi
+      # TODO add tests for backend and rest-api
+
       - name: Success
         uses: rtCamp/action-slack-notify@v2.0.2
         if: success()
         env:
-          SLACK_TITLE: CI flow / success
+          SLACK_TITLE: CI flow / Success
           SLACK_COLOR: good
-          SLACK_MESSAGE: Message for success
+          SLACK_MESSAGE: Message for Success
 
       - name: Failure
         uses: rtCamp/action-slack-notify@v2.0.2
         if: failure()
         env:
-          SLACK_TITLE: CI flow / failure
+          SLACK_TITLE: CI flow / Failure
           SLACK_COLOR: danger
-          SLACK_MESSAGE: Message for failure
+          SLACK_MESSAGE: Message for Failure
 
       - name: Cancel
         uses: rtCamp/action-slack-notify@v2.0.2
-        if: cancel()
+        if: cancelled()
         env:
-          SLACK_TITLE: CI flow / cancel
+          SLACK_TITLE: CI flow / Cancel
           SLACK_COLOR: danger
-          SLACK_MESSAGE: Message for cancel
+          SLACK_MESSAGE: Message for Cancel
