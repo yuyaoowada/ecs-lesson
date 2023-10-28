@@ -11,7 +11,8 @@
   "dependencies": {
     "axios": "^1.6.0",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "vue-moments-ago": "^0.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.13",
