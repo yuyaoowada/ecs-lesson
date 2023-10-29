@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <div>This application is Sample WebApp for CICD lesson.(version1.0.1)</div>
+    <div>This application is Sample WebApp for CICD lesson.version1.0.1</div>
     <div>Response from REST API is... {{ info }}</div>
   </div>
 </template>
